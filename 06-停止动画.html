@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 150px;
+            height: 150px;
+            background-color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+
+    <button>停止当前动画，执行下一个动画</button>
+    <button>快进到当前动画的终点，执行下一个动画</button>
+    <button>停止所有动画，并且停在当下</button>
+    <button>快进到当前动画的终点，停止所有动画</button>
+    <button>完成所有动画</button>
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/jquery.color.min.js"></script>
+    <script src="lib/jquery.easing.js"></script>
+    <script>
+        var $box = $(".box");
+        var $btns = $("button");
+
+        $box.click(function () {
+            $(this).animate({
+                top: "150px",
+                left: 150,
+                backgroundColor: "#00f"
+            }, 2000, "easeInOutBack", function () {
+                console.log("第一阶段完结");
+            })
+
+            $(this).animate({
+                width: 500,
+                height: 300
+            }, 3000, function () {
+                console.log('第二阶段完毕');
+            })
+
+            $(this).animate({
+                top: 50,
+                opacity: .2
+            }, 3000, function () {
+                console.log('整体完毕.');
+            })
+        })
+        $btns.eq(0).click(function () {
+            $box.stop(false, false)
+        })
+        $btns.eq(1).click(function () {
+            $box.stop(false, false)
+        })
+
+        $btns.eq(2).click(function () {  //停到当前
+            $box.stop(true, false)
+        })
+        $btns.eq(3).click(function () {  //第一阶段快速完成,停到第一阶段最后
+            $box.stop(true, true)
+        })
+        $btns.eq(4).click(function () {  //瞬间完成所有,停止到最后
+            $box.finish()
+        })
+    </script>
+</body>
+
+</html>

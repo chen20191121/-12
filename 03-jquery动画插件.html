@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #00ffff;
+        }
+
+        .but1 {
+            margin-top: 220px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <button class="but1" onclick="anim(300,300,'#ff0000')">移动400</button>
+    <button onclick="anim(400,400,'#0022ff')">点我</button>
+    <button onclick="anim(0,0,'#00ffff')">还原</button>
+    <script src="lib/jquery.min.js"></script>
+    <script src="lib/jquery.color.min.js"></script>
+    <script src="lib/jquery.easing.js"></script>
+    <script>
+        // $('.but1').click(function () {
+        //     $('.box').animate({ left: 400 }, 1000, 'swing', function () {
+        //         console.log('移动完成');
+        //     })
+        // })
+        var anim = function (x, y, color) {
+            $('.box').animate({ left: x, top: y, backgroundColor: color }, 1000, 'easeOutBounce', function () {
+
+            })
+        }
+    </script>
+</body>
+
+</html>

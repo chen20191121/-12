@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: blueviolet;
+            width: 400px;
+            height: 400px;
+        }
+
+        .btn1 {
+            margin-top: 420px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+    </div>
+    <button class="btn1">移动到400</button>
+
+    <script>
+        var step = 9
+        var box = document.querySelector('.box')
+        var but = document.querySelector('.btn1')
+        but.onclick = function () {
+            var timer = setInterval(function () {
+                // 获取当前位置
+                var currentLeft = box.offsetLeft;
+                // 走一次
+                currentLeft += step
+                box.style.left = currentLeft + 'px'
+                if (Math.abs(400 - currentLeft) < step) {
+                    // box.style.left = 400;
+                    clearInterval(timer)
+                }
+            }, 16.7)
+        }
+    </script>
+</body>
+
+</html>
